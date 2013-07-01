@@ -5,7 +5,13 @@
 (in-package :cl-user)
 
 (defpackage #:pool
-  (:use :cl :bordeaux-threads))
+  (:use :cl :bordeaux-threads)
+  (:export #:acquire-from-pool
+           #:release-to-pool
+           #:valid-resource
+           #:force-terminate
+           #:cleanup-resource
+           #:resource-problem))
 
 (defpackage #:redis-pool
   (:use :cl :pool :redis)
