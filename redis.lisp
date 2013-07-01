@@ -5,7 +5,8 @@
 (in-package :pool)
 
 (defmethod valid-resource ((resource redis:redis-connection))
-  (redis::connection-open-p resource))
+  (unless (redis::connection-open-p resource)
+    (error 'resource-problem :text "Redis connection went away.")))
 
 (defmethod force-terminate ((resource redis:redis-connection))
   (redis:close-connection resource))
