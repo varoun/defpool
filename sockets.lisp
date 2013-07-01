@@ -2,7 +2,7 @@
 ;;;; Author: varoun (Varoun P)
 ;;;; Connection pooling for tcp sockets.
 
-(in-package :pool)
+(in-package :socket-pool)
 
 (defmethod valid-resource ((resource usocket:usocket))
   (handler-case (unless 

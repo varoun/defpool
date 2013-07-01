@@ -20,5 +20,7 @@
     functions."
     :depends-on (:bordeaux-threads)
     :components ((:file "packages")
-                 (:file "pool")))
+                 (:file "pool")
+                 (:file "redis")
+                 (:file "sockets")))
 

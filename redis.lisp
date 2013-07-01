@@ -1,8 +1,8 @@
 ;;;; -*- Mode: LISP; Syntax: ANSI-Common-Lisp; Base: 10 -*-
 ;;;; Author: varoun (Varoun P)
-;;;; Connection pooling for redis.
+;;;; Connection pooling for cl-redis.
 
-(in-package :pool)
+(in-package :redis-pool)
 
 (defmethod valid-resource ((resource redis:redis-connection))
   (unless (redis::connection-open-p resource)
