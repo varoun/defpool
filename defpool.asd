@@ -18,7 +18,9 @@
     :description "Defpool is a resource pooling library. It is designed to support connection
     pooling, socket pooling etc, and can be extended by defining methods for a few generic
     functions."
-    :depends-on (:bordeaux-threads)
+    :depends-on (:bordeaux-threads
+                 :cl-redis
+                 :usocket)
     :components ((:file "packages")
                  (:file "pool")
                  (:file "redis")
