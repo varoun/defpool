@@ -17,12 +17,12 @@
 (defmethod cleanup-resource ((resource usocket:usocket))
   (force-output (usocket:socket-stream resource)))
 
-(defmacro with-socket-pool ((name 
+(defmacro with-socket-pool ((name
                              &key host port
                              (protocol :stream)
                              (element-type 'character))
                             &body body)
-  `(let ((,name 
+  `(let ((,name
           (acquire-from-pool 
            #'(lambda () (usocket:socket-connect 
                          ,host 
@@ -31,4 +31,4 @@
                          :element-type ',element-type))
            :socket)))
      (unwind-protect (progn ,@body)
-       (release-to-pool sock :socket))))
+       (release-to-pool ,name :socket))))
