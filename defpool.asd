@@ -1,13 +1,13 @@
-;;;; -*- Mode: LISP; Syntax: ANSI-Common-Lisp; Base: 10 -*-
+>0;95;c;;;; -*- Mode: LISP; Syntax: ANSI-Common-Lisp; Base: 10 -*-
 ;;;; Author: varoun (Varoun P)
 ;;;; System definition for defpool
 
 (in-package :cl-user)
 
-(defpackage #:defroute-asd
+(defpackage #:defpool-asd
   (:use :cl :asdf))
 
-(in-package :defroute-asd)
+(in-package :defpool-asd)
 
 (defvar *defpool-version* "0.0.1"
   "The current version of defpool.")
