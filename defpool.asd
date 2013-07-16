@@ -1,4 +1,4 @@
->0;95;c;;;; -*- Mode: LISP; Syntax: ANSI-Common-Lisp; Base: 10 -*-
+;;;; -*- Mode: LISP; Syntax: ANSI-Common-Lisp; Base: 10 -*-
 ;;;; Author: varoun (Varoun P)
 ;;;; System definition for defpool
 
