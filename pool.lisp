@@ -56,7 +56,8 @@
   from the pool, ensure that it is still valid."
   (unless (typep pool 'resource-pool)
     (setf pool (find-or-create-resource-pool resource-thunk resource-type)))
-  (or (loop 
+  (or 
+   (loop 
          for pres = (with-lock-held ((resource-pool-lock pool))
                      (pop (free-resources pool)))
          always pres
@@ -72,19 +73,19 @@
                        (setf (all-resources pool)
                              (delete pres (all-resources pool))))
                      nil)))
-      ;; Make sure that when we create a resource, it succeeds. Keep retrying on any errors.
-      (do ((res (handler-case 
-                       (funcall (resource-constructor pool))
-                     (error ()
-                       (warn "Count not create resource!")))
-                (handler-case 
-                       (funcall (resource-constructor pool))
-                     (error ()
-                       (warn "Count not create resource!")))))
-          (res (progn (with-lock-held ((resource-pool-lock pool))
-                        (push res (all-resources pool)))
-                      res)))))
-                       
+   ;; Make sure that when we create a resource, it succeeds. Keep retrying on any errors.
+   (do ((res (handler-case 
+                 (funcall (resource-constructor pool))
+               (error ()
+                 (warn "Count not create resource!")))
+             (handler-case 
+                 (funcall (resource-constructor pool))
+               (error ()
+                 (warn "Count not create resource!")))))
+       (res (progn (with-lock-held ((resource-pool-lock pool))
+                     (push res (all-resources pool)))
+                   res)))))
+
 (defun release-to-pool (resource resource-type &optional pool)
   "Release the resource back to its pool, give it a change to clean up."
   (unless (typep pool 'resource-pool)
